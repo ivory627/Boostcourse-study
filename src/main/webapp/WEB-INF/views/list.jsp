@@ -9,7 +9,7 @@
 </head>
 <body>
 <h1>방명록</h1>
-<br>방명록 전체 수 : ${cnt }
+<br>방명록 전체 수 : ${cnt }, 방문자수 : ${cookieCount}
 <br>
 <br>
 
@@ -18,9 +18,11 @@ ${book.id }<br>
 ${book.name }<br>
 ${book.content }<br>
 ${book.regdate }<br>
+<c:if test="${sessionScope.isAdmin == 'true' }">
+<a href="delete?id=${book.id }">삭제</a><br><br>
+</c:if>
 </c:forEach>
 <br>
-
 <c:forEach items="${pageStartList }" var="page" varStatus="status">
 	<a href="list?start=${page }">${status.index + 1 }</a>&nbsp;&nbsp;
 </c:forEach>
