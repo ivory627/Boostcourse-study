@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
+import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -58,5 +59,13 @@ public class WebMvcContextConfiguration implements WebMvcConfigurer {
     public void addArgumentResolvers(List<HandlerMethodArgumentResolver> argumentResolvers) {
     	System.out.println("아규먼트 리졸버 등록");
     	argumentResolvers.add(new HeaderMapArgumentResolver());
+    }
+    
+    // DispathcerServlet에게 멀티파트 요청이 올경우 파일 업로드 처리가 될 수 있도록 MultipartResolver객체를 등록. 최대 10메가 크기의 파일이 저장되도록 설정
+    @Bean
+    public MultipartResolver multipartResolver() {
+        org.springframework.web.multipart.commons.CommonsMultipartResolver multipartResolver = new org.springframework.web.multipart.commons.CommonsMultipartResolver();
+        multipartResolver.setMaxUploadSize(10485760); // 1024 * 1024 * 10
+        return multipartResolver;
     }
 }
