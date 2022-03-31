@@ -10,7 +10,7 @@
 	<url>http://maven.apache.org</url>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<spring.version>5.2.3.RELEASE</spring.version>
+		<spring.version>5.3.18</spring.version>
 		<!-- jackson -->
 		<jackson2.version>2.9.4</jackson2.version>
 	</properties>
